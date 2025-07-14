@@ -1,8 +1,8 @@
 export default function Admin() {
   return (
     <main style={{ padding: 40, fontFamily: 'Arial, sans-serif' }}>
-      <h2 style={{ fontSize: '2em', marginBottom: 20 }}>Ajout de fiche RTA</h2>
-      <p>Cette section sera bientôt réservée à l’administrateur pour ajouter des documents.</p>
+      <h2 style={{ fontSize: '2.5em', marginBottom: 20 }}>Espace Admin</h2>
+      <p>Bientôt un formulaire sécurisé pour ajouter/modifier les RTA.</p>
     </main>
   );
 }
