@@ -1,49 +1,49 @@
-import { useState } from 'react';
-
-const documents = [
-  { label: 'Nissan Qashqai 1.5 dCi', file: 'qashqai-15dci.pdf', section: 'RTA' },
-  { label: 'Audi A3 8P 2.0 TDI', file: 'audi-a3-8p.pdf', section: 'RTA' },
-  { label: 'Golf 4 1.9 TDI ARL', file: 'golf4-arl.pdf', section: 'RTA' },
-  { label: 'Fluides moteur 1.5 dCi', file: 'clio3.pdf', section: 'Fluides & Entretien' },
-  { label: 'Fluides moteur 1.9 TDI', file: 'passat-awx.pdf', section: 'Fluides & Entretien' },
-  { label: 'Passat B5.5 1.9 TDI', file: 'passat-b5-tdi.pdf', section: 'Distribution & Mécanique moteur' }
-];
+import React from "react";
 
 export default function RTA() {
-  const [search, setSearch] = useState('');
-
-  const filtered = documents.filter(doc => 
-    doc.label.toLowerCase().includes(search.toLowerCase())
-  );
-
-  const grouped = filtered.reduce((acc, doc) => {
-    acc[doc.section] = acc[doc.section] || [];
-    acc[doc.section].push(doc);
-    return acc;
-  }, {});
-
   return (
-    <main className="min-h-screen min-h-[100vh] bg-gray-50 p-10 font-sans">
-      <h2 className="text-3xl font-bold mb-6 text-blue-800">Section RTA</h2>
-      <input
-        type="text"
-        placeholder="Rechercher un modèle, motorisation..."
-        className="mb-8 w-full p-3 border border-gray-300 rounded shadow"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      {Object.keys(grouped).map(section => (
-        <div key={section} className="mb-10">
-          <h3 className="text-2xl font-semibold mb-4 text-blue-700">{section}</h3>
-          <ul className="list-disc list-inside text-lg">
-            {grouped[section].map(doc => (
-              <li key={doc.file}>
-                📄 {doc.label} – <a href={'/rta/' + doc.file} download className="text-blue-600 underline">Télécharger PDF</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+    <main className="min-h-screen bg-gray-50 text-gray-800 p-8 font-sans space-y-16">
+      <section className="bg-white shadow-lg rounded-xl p-6 border border-blue-100">
+        <h2 className="text-3xl font-bold text-blue-800 mb-4">📘 Revue Technique Automobile (RTA)</h2>
+        <ul className="space-y-6">
+          <li>
+            <p className="font-semibold mb-2">📄 Nissan Qashqai 1.5 dCi – <a href="/rta/qashqai-15dci.pdf" download className="text-blue-600 underline">Télécharger PDF</a></p>
+            <iframe src="/rta/qashqai-15dci.pdf" className="w-full h-[500px] border rounded-lg shadow-sm"></iframe>
+          </li>
+          <li>
+            <p className="font-semibold mb-2">📄 Audi A3 8P 2.0 TDI – <a href="/rta/audi-a3-8p.pdf" download className="text-blue-600 underline">Télécharger PDF</a></p>
+            <iframe src="/rta/audi-a3-8p.pdf" className="w-full h-[500px] border rounded-lg shadow-sm"></iframe>
+          </li>
+          <li>
+            <p className="font-semibold mb-2">📄 Golf 4 1.9 TDI ARL – <a href="/rta/golf4-arl.pdf" download className="text-blue-600 underline">Télécharger PDF</a></p>
+            <iframe src="/rta/golf4-arl.pdf" className="w-full h-[500px] border rounded-lg shadow-sm"></iframe>
+          </li>
+        </ul>
+      </section>
+
+      <section className="bg-blue-50 shadow-md rounded-xl p-6 border border-blue-200">
+        <h3 className="text-2xl font-bold text-blue-700 mb-4">🧪 Fluides & Entretien</h3>
+        <ul className="space-y-6">
+          <li>
+            <p className="font-semibold mb-2">🧪 Fluides moteur 1.5 dCi – <a href="/rta/clio3.pdf" download className="text-blue-600 underline">Télécharger PDF</a></p>
+            <iframe src="/rta/clio3.pdf" className="w-full h-[500px] border rounded-lg shadow-sm"></iframe>
+          </li>
+          <li>
+            <p className="font-semibold mb-2">🧪 Fluides moteur 1.9 TDI – <a href="/rta/passat-awx.pdf" download className="text-blue-600 underline">Télécharger PDF</a></p>
+            <iframe src="/rta/passat-awx.pdf" className="w-full h-[500px] border rounded-lg shadow-sm"></iframe>
+          </li>
+        </ul>
+      </section>
+
+      <section className="bg-gray-100 shadow-inner rounded-xl p-6 border border-gray-300">
+        <h3 className="text-2xl font-bold text-red-700 mb-4">🔩 Distribution & Mécanique moteur</h3>
+        <ul className="space-y-6">
+          <li>
+            <p className="font-semibold mb-2">🔩 Passat B5.5 1.9 TDI – <a href="/rta/passat-b5-tdi.pdf" download className="text-blue-600 underline">Télécharger PDF</a></p>
+            <iframe src="/rta/passat-b5-tdi.pdf" className="w-full h-[500px] border rounded-lg shadow-sm"></iframe>
+          </li>
+        </ul>
+      </section>
     </main>
   );
 }
